@@ -6,7 +6,6 @@ __pycache__/
 *.pot
 x_*
 
-
 # Environments
 .env
 .venv
