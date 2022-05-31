@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 # Home Blog
 def index(request):
-    return HttpResponse("Home Blog")
+    return render(request, 'home.html')
 
 
 # Posts: List, Show, Create, Edit, Delete
