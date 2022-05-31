@@ -11,7 +11,7 @@ class PostCreateForm(ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'row': 4}),
-            'image': forms.FileInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control', 'disabled': 'True'}),
             'category': forms.Select(attrs={'class': 'form-select'}),
             'published': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'author': forms.Select(attrs={'class': 'form-select'})
