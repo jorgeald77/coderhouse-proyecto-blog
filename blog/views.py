@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 # Home Blog
+from blog.forms import PostCreateForm
 from blog.models import Post
 
 
@@ -16,13 +17,19 @@ def post_list(request):
     return render(request, 'posts/list.html', {'posts': posts})
 
 
-def post_create(request):
-    return render(request, 'posts/create.html')
-
-
 def post_show(request, pk: int):
     post = Post.objects.get(pk=pk)
     return render(request, "posts/show.html", {'post': post})
+
+
+def post_create(request):
+    if request.method == "POST":
+        form = PostCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/posts/listar')
+
+    return render(request, 'posts/create.html', {'form': PostCreateForm})
 
 
 def post_edit(request):

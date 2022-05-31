@@ -11,6 +11,7 @@
             <h5 class="card-title">{{ post.title }}</h5>
             <span class="badge rounded-pill text-bg-light">{{ post.category }}</span>
             <p class="card-text">{{ post.content }}</p>
+            <a href="{% url 'post.show' post.id %}" class="btn btn-sm btn-primary">Leer ...</a>
         </div>
     </div>
     {% endfor %}
