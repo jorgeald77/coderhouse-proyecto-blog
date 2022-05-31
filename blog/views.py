@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Home Blog
-from blog.forms import PostCreateForm
+from blog.forms import PostCreateForm, CategoryCreateForm
 from blog.models import Post, Category
 
 
@@ -47,7 +47,13 @@ def category_list(request):
 
 
 def category_create(request):
-    return HttpResponse("Create Comment")
+    if request.method == "POST":
+        form = CategoryCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/categories/listar')
+
+    return render(request, 'categories/create.html', {'form': CategoryCreateForm})
 
 
 def category_edit(request):

@@ -18,7 +18,7 @@ class PostCreateForm(ModelForm):
         }
 
 
-class CategoryCreteForm(ModelForm):
+class CategoryCreateForm(ModelForm):
     class Meta:
         model = Category
         fields = ('name',)
