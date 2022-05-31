@@ -6,22 +6,23 @@ from blog.models import Post
 
 
 def index(request):
-    # Obtener los 5 post mas recientes [:5]
-    last_posts = Post.objects.all().order_by('-created', 'title').values()
+    last_posts = Post.objects.all().order_by('-created', 'title')[:5]
     return render(request, 'home.html', {'last_posts': last_posts})
 
 
 # Posts: List, Show, Create, Edit, Delete
 def post_list(request):
-    return HttpResponse("List Posts")
+    posts = Post.objects.all().order_by('-created', 'title')
+    return render(request, 'posts/list.html', {'posts': posts})
 
 
 def post_create(request):
     return HttpResponse("Create Post")
 
 
-def post_show(request):
-    return HttpResponse("Show Post")
+def post_show(request, pk: int):
+    post = Post.objects.get(pk=pk)
+    return render(request, "posts/show.html", {'post': post})
 
 
 def post_edit(request):
