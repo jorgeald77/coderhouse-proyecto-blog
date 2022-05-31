@@ -7,4 +7,6 @@ urlpatterns = [
     path('posts/listar', views.post_list, name='post.list'),
     path('posts/crear', views.post_create, name='post.create'),
 
+    path('categories/listar', views.category_list, name='category.list'),
+    path('categories/crear', views.category_create, name='category.create'),
 ]
