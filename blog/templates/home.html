@@ -1,5 +1,19 @@
 {% extends 'templates/app.html' %}
 
 {% block main %}
-<h2>Blog main</h2>
+<h2>Últimas publicaciones</h2>
+
+<section class="d-flex flex-column align-items-center flex-lg-row justify-content-lg-evenly">
+    {% for post in last_posts %}
+    <div class="card mx-lg-2 my-sm-2" style="width: 22rem;">
+        <img src="https://picsum.photos/200/150?random={{post.id}}" class="card-img-top" alt="img post">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content }}</p>
+            <a href="#" class="btn btn-sm btn-primary">Leer ...</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
 {% endblock %}

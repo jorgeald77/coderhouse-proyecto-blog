@@ -8,7 +8,7 @@
     <title>Blog</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <script src="{% static 'js/bootstrap.min.js' %}" defer></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}" defer></script>
 </head>
 <body>
 
@@ -16,13 +16,10 @@
     {% include 'templates/nav.html' %}
 </header>
 
-<main>
+<main class="container">
     {% block main %}
     {% endblock %}
 </main>
 
-<footer>
-    Footer
-</footer>
 </body>
 </html>

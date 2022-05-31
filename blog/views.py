@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
 # Home Blog
+from blog.models import Post
+
+
 def index(request):
-    return render(request, 'home.html')
+    # Obtener los 5 post mas recientes [:5]
+    last_posts = Post.objects.all().order_by('-created', 'title').values()
+    return render(request, 'home.html', {'last_posts': last_posts})
 
 
 # Posts: List, Show, Create, Edit, Delete
