@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 # Home Blog
 from blog.forms import PostCreateForm
-from blog.models import Post
+from blog.models import Post, Category
 
 
 def index(request):
@@ -40,9 +40,10 @@ def post_delete(request):
     pass
 
 
-# Comments: List, Show, Create, Edit, Delete
+# Categories: List, Show, Create, Edit, Delete
 def category_list(request):
-    return HttpResponse("List Comments")
+    categories = Category.objects.all().order_by('-name')
+    return render(request, 'categories/list.html', {'categories': categories})
 
 
 def category_create(request):
