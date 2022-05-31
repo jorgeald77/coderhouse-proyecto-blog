@@ -17,7 +17,7 @@ def post_list(request):
 
 
 def post_create(request):
-    return HttpResponse("Create Post")
+    return render(request, 'posts/create.html')
 
 
 def post_show(request, pk: int):
@@ -26,32 +26,28 @@ def post_show(request, pk: int):
 
 
 def post_edit(request):
-    return HttpResponse("Edit Post")
+    pass
 
 
 def post_delete(request):
-    return HttpResponse("Delete Post")
+    pass
 
 
 # Comments: List, Show, Create, Edit, Delete
-def comment_list(request):
+def category_list(request):
     return HttpResponse("List Comments")
 
 
-def comment_create(request):
+def category_create(request):
     return HttpResponse("Create Comment")
 
 
-def comment_show(request):
-    return HttpResponse("Show Comment")
+def category_edit(request):
+    pass
 
 
-def comment_edit(request):
-    return HttpResponse("Edit Comment")
-
-
-def comment_delete(request):
-    return HttpResponse("Delete Comments")
+def category_delete(request):
+    pass
 
 
 # Users: List, Show, Create, Edit, Delete
@@ -68,8 +64,8 @@ def user_show(request):
 
 
 def user_edit(request):
-    return HttpResponse("Edit User")
+    pass
 
 
 def user_delete(request):
-    return HttpResponse("Delete User")
+    pass
