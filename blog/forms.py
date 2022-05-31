@@ -34,7 +34,7 @@ class ProfileCreateForm(ModelForm):
         widgets = {
             'user': forms.Select(attrs={'class': 'form-select'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'image': forms.FileInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control', 'disabled': 'True'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'row': 2}),
             'url': forms.TextInput(attrs={'class': 'form-control'}),
         }
