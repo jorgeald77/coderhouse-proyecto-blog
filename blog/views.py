@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Home Blog
-from blog.forms import PostCreateForm, CategoryCreateForm
+from blog.forms import PostCreateForm, CategoryCreateForm, UserCreateForm
 from blog.models import Post, Category, Profile
 
 
@@ -79,6 +80,11 @@ def profile_show(request, pk: int):
 
 def profile_edit(request):
     return HttpResponse("Editar perfil del usuario")
+
+
+# User
+def user_create(request):
+    return render(request, 'users/create.html', {'form': UserCreateForm})
 
 
 # Authentication

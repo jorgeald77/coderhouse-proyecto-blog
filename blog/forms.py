@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 from django.forms import ModelForm
 
 from blog.models import Post, Category, Profile
@@ -37,4 +38,15 @@ class ProfileCreateForm(ModelForm):
             'image': forms.FileInput(attrs={'class': 'form-control', 'disabled': 'True'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'row': 2}),
             'url': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class UserCreateForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
         }
