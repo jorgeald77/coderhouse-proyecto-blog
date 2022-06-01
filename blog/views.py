@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Home Blog
 from blog.forms import PostCreateForm, CategoryCreateForm
-from blog.models import Post, Category
+from blog.models import Post, Category, Profile
 
 
 def index(request):
@@ -64,22 +65,16 @@ def category_delete(request):
     pass
 
 
-# Users: List, Show, Create, Edit, Delete
-def user_list(request):
-    return HttpResponse("List Users")
+# Profile: List, Show, Create, Edit, Delete
+def profile_list(request):
+    profiles = Profile.objects.prefetch_related('user').all()
+    return render(request, 'profiles/list.html', {'profiles': profiles})
 
 
-def user_create(request):
-    return HttpResponse("Create User")
+def profile_show(request, pk: int):
+    profile = Profile.objects.get(pk=pk)
+    return render(request, "profiles/show.html", {'profile': profile})
 
 
-def user_show(request):
-    return HttpResponse("Show User")
-
-
-def user_edit(request):
-    pass
-
-
-def user_delete(request):
-    pass
+def profile_edit(request):
+    return HttpResponse("Editar perfil del usuario")
