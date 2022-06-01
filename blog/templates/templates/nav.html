@@ -9,6 +9,7 @@
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
@@ -22,8 +23,15 @@
                         <li><a class="dropdown-item" href="{% url 'category.list' %}">Categorías</a></li>
                         <li><a class="dropdown-item" href="{% url 'post.list' %}">Publicaciones</a></li>
                         <li><a class="dropdown-item" href="{% url 'profile.list' %}">Usuarios</a></li>
+
+                        <a class="nav-link" aria-current="page" href="{% url 'logout' %}">Salir</a>
                     </ul>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'login' %}">Entrar</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>

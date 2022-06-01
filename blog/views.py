@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -78,3 +79,23 @@ def profile_show(request, pk: int):
 
 def profile_edit(request):
     return HttpResponse("Editar perfil del usuario")
+
+
+# Authentication
+def auth_login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+
+    return render(request, 'auth/login.html', {'form': AuthenticationForm()})
+
+
+def auth_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/')
