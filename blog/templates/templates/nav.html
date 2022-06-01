@@ -23,8 +23,8 @@
                         <li><a class="dropdown-item" href="{% url 'category.list' %}">Categorías</a></li>
                         <li><a class="dropdown-item" href="{% url 'post.list' %}">Publicaciones</a></li>
                         <li><a class="dropdown-item" href="{% url 'profile.list' %}">Usuarios</a></li>
-
-                        <a class="nav-link" aria-current="page" href="{% url 'logout' %}">Salir</a>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Salir</a></li>
                     </ul>
                 </li>
                 {% else %}
