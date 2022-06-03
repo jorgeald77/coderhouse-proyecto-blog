@@ -84,6 +84,12 @@ def profile_edit(request):
 
 # User
 def user_create(request):
+    if request.method == 'POST':
+        form = UserCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+
     return render(request, 'users/create.html', {'form': UserCreateForm})
 
 
