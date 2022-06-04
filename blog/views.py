@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Home Blog
@@ -27,10 +27,10 @@ def post_show(request, pk: int):
 
 def post_create(request):
     if request.method == "POST":
-        form = PostCreateForm(request.POST)
+        form = PostCreateForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/posts/listar')
+            return redirect('post.list')
 
     return render(request, 'posts/create.html', {'form': PostCreateForm})
 
@@ -69,7 +69,7 @@ def category_delete(request):
 
 # Profile: List, Show, Create, Edit, Delete
 def profile_list(request):
-    profiles = Profile.objects.prefetch_related('user').all()
+    profiles = Profile.objects.select_related()
     return render(request, 'profiles/list.html', {'profiles': profiles})
 
 

@@ -6,7 +6,7 @@ from django.utils.timezone import now
 
 class Profile(models.Model):
     name = models.CharField(max_length=74)
-    image = models.ImageField(null=True, blank=True, upload_to='images/')
+    image = models.ImageField(upload_to='profiles', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
@@ -25,7 +25,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=128)
     content = models.TextField()
-    image = models.ImageField(null=True, blank=True, upload_to='images/')
+    image = models.ImageField(upload_to='posts', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     published = models.DateField(null=True, blank=True)
     created = models.DateTimeField(default=now)
